@@ -64,50 +64,54 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 		}
 	};
 
-	if (showForm === false) {
-		return <button onClick={handleToggleForm}>Add New Expense</button>;
-	} else {
-		return (
-			<form onSubmit={submitHandler}>
-				<div className="new-expense__controls">
-					<div className="new-expense__control">
-						<label htmlFor="">Title</label>
-						<input
-							type="text"
-							value={inputTitle}
-							onChange={titleChangeHandler}
-						/>
+	return (
+		<div>
+			{!showForm && (
+				<button onClick={handleToggleForm}>Add New Expense</button>
+			)}
+
+			{showForm && (
+				<form onSubmit={submitHandler}>
+					<div className="new-expense__controls">
+						<div className="new-expense__control">
+							<label htmlFor="">Title</label>
+							<input
+								type="text"
+								value={inputTitle}
+								onChange={titleChangeHandler}
+							/>
+						</div>
+						<div className="new-expense__control">
+							<label htmlFor="">Amount</label>
+							<input
+								type="number"
+								value={inputAmount}
+								onChange={amountChangeHandler}
+								min="0.01"
+								step="0.01"
+							/>
+						</div>
+						<div className="new-expense__control">
+							<label htmlFor="">Date</label>
+							<input
+								value={inputDate}
+								type="date"
+								onChange={dateChangeHandler}
+								min="2023-01-01"
+								max="2023-12-31"
+							/>
+						</div>
 					</div>
-					<div className="new-expense__control">
-						<label htmlFor="">Amount</label>
-						<input
-							type="number"
-							value={inputAmount}
-							onChange={amountChangeHandler}
-							min="0.01"
-							step="0.01"
-						/>
+					<div className="new-expense__actions">
+						<button type="submit" onClick={handleToggleForm}>
+							Cancel
+						</button>
+						<button type="submit">Add Expense</button>
 					</div>
-					<div className="new-expense__control">
-						<label htmlFor="">Date</label>
-						<input
-							value={inputDate}
-							type="date"
-							onChange={dateChangeHandler}
-							min="2023-01-01"
-							max="2023-12-31"
-						/>
-					</div>
-				</div>
-				<div className="new-expense__actions">
-					<button type="submit" onClick={handleToggleForm}>
-						Cancel
-					</button>
-					<button type="submit">Add Expense</button>
-				</div>
-			</form>
-		);
-	}
+				</form>
+			)}
+		</div>
+	);
 };
 
 export default ExpenseForm;
