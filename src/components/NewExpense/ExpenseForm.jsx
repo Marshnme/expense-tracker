@@ -46,11 +46,11 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 		e.preventDefault();
 		const expenseData = {
 			title: inputTitle,
-			amount: inputAmount,
+			amount: +inputAmount,
 			date: new Date(inputDate),
 		};
 		onSaveExpenseData(expenseData);
-
+		setShowForm(false);
 		setInputTitle('');
 		setInputAmount('');
 		setInputDate('');
